@@ -15,5 +15,14 @@ app.get("/status", (request, response) => {
 
     response.send(status);
 });
+
+app.get('https://uselessfacts.jsph.pl/random.json', async (req, res) => {
+    // want fetch my jokes from my SQL TABLE
+    // result is a big JSON object that has a bunch of data on it
+    const result = await db.query(`SELECT * FROM jokes`)
+    // we only care about the 'rows' part of the result
+    const jokes = result.rows
+    res.json(jokes)
+})
     
 
